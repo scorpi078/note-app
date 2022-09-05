@@ -147,7 +147,6 @@ function login(){
 		$results = mysqli_query($mysqli, $query);
 
 		if (mysqli_num_rows($results) == 1) { // user found
-			// check if user is admin or user
 			$logged_in_user = mysqli_fetch_assoc($results);
 			
 				$_SESSION['user'] = $logged_in_user;
