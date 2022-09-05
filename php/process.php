@@ -22,17 +22,16 @@ if (isset($_POST['register_btn'])) {
 // register user
 function register()
 {
-    // call these variables with the global keyword to make them available in function
+    // calling the variables with the global keyword to make them available in function
     global $mysqli, $errors, $username, $email;
 
-    // receive all input values from the form. Call the e() function
-    // defined below to escape form values
+    // receiving all input values from the form.
     $username    =  e($_POST['username']);
     $email       =  e($_POST['email']);
     $password_1  =  e($_POST['password_1']);
     $password_2  =  e($_POST['password_2']);
 
-    // form validation: ensure that the form is correctly filled
+    // form validation
     if (empty($username)) {
         array_push($errors, "Username is required");
     }
@@ -46,9 +45,9 @@ function register()
         array_push($errors, "The two passwords do not match");
     }
 
-    // register user if there are no errors in the form
+    // registering user if there are no errors in the form
     if (count($errors) == 0) {
-        $password = md5($password_1); //encrypt the password before saving in the database
+        $password = md5($password_1); //encrypting the password before saving in the database
 
         if (isset($_POST['user_type'])) {
             $user_type = e($_POST['user_type']);
@@ -62,10 +61,10 @@ function register()
 					  VALUES('$username', '$email', 'user', '$password')";
             mysqli_query($mysqli, $query);
 
-            // get id of the created user
+            // getting the id of the created user
             $logged_in_user_id = mysqli_insert_id($mysqli);
 
-            $_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
+            $_SESSION['user'] = getUserById($logged_in_user_id); // putting logged in user in session
             $_SESSION['success']  = "You are now logged in";
             header('location: home.php');
         }
@@ -118,12 +117,12 @@ if (isset($_GET['logout'])) {
 	header("location: /note-app/login.php");
 }
 
-// call the login() function if register_btn is clicked
+// calling the login() function if register_btn is clicked
 if (isset($_POST['login_btn'])) {
 	login();
 }
 
-// LOGIN USER
+// login user
 function login(){
 	global $mysqli, $username, $errors;
 
