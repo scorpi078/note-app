@@ -1,2 +1,2 @@
-# note-app
+# PHP note app
 A simple PHP CRUD note app
