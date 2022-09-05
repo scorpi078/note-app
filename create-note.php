@@ -46,12 +46,17 @@ if (!isLoggedIn()) {
     <main>
         <div class="backgnd">
             <div class="container text-center">
-                <h1 class="py-4 bg-dark text-light rounded"><i class="large material-icons">apps</i>Create a new note</h1>
-
+                <?php
+                if ($update == false) :
+                ?>
+                    <h1 class="py-4 bg-dark text-light rounded"><i class="large material-icons">apps</i>Create a new note</h1>
+                <?php else : ?>
+                    <h1 class="py-4 bg-dark text-light rounded"><i class="large material-icons">apps</i>Update note</h1>
+                <?php endif; ?>
                 <div class="d-flex justify-content-center">
                     <form action="php/process.php" method="POST" class="w-50">
                         <input type="hidden" name="note_id" value="<?php echo $note_id; ?>">
-                        <div class="py-2">                            
+                        <div class="py-2">
                             <textarea id="input" name="text" rows="4" cols="50" value=""><?php echo $text ?></textarea>
                         </div>
                         <div class="d-flex">
@@ -71,4 +76,5 @@ if (!isLoggedIn()) {
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
+
 </html>
